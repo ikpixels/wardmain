@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+    .dash{
+        background-color:black;
+        padding:5px;
+        color:white;
+        border-radius:5px;
+    }
+    #btn{
+        background-color:green;
+        padding:10px;
+        font-weight:bold;
+        color:white;
+        border-radius:5px;
+        text-decoration:none;
+    }
+    #btn:hover{
+        background-color:black;
+        color:white;
+    }
+</style>
+<hr>
+<div class="patient-hierachy">
+                <h2>List of doctors</h2> 
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Specialisation</th>
+                    </tr>
+                </thead>
+                <tbody class="p-2">
+                    {% for d in doctor %}
+                    <tr>
+                        <td>{{d.name}}</td>
+                        <td>{{d.email}}</td>
+                        <td>{{d.phone_number}}</td>
+                        <td>{{d.specialisation}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
+             <a href="#">Show All</a>
+            </div>
+{% endblock content %}

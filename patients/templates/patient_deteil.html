@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+	<div class="row">
+		 <div class="col-sm-12 col-lg-4">
+		 	 <div>
+		 	 	 <img src="{%static 'images/user.jpg'%}"><hr>
+		 	 	 <h1>{{Patient.first_name}} {{Patient.last_name}}</h1>
+
+		 	 </div>
+		 </div>
+		 <div class="col-sm-12 col-lg-8">
+		 	 <br><br><br>
+		 	 <div>
+		 	 	 <table class="table">
+		 	 	 	 <tr>
+		 	 	 	 	<th>ID</th>
+		 	 	 	 	<td>{{Patient.id_number}}</td>
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	<th>Date of birth</th>
+		 	 	 	 	<td>{{Patient.date_of_birth}}</td>
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	<th>Ward</th>
+		 	 	 	 	<td>{{Patient.ward.name}}</td>
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	<th>Doctor</th>
+		 	 	 	 	<td>{{Patient.doctor.name}}</td>
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	 <th>Temperature</th>
+		 	 	 	 	 <td>{{Patient.temperature}}</td>	 
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	<th>Heart rate</th>
+		 	 	 	 	<td>{{Patient.heart_rate}}</td>
+		 	 	 	 </tr>
+		 	 	 	 <tr>
+		 	 	 	 	<th>humidity</th>
+		 	 	 	 	<td>{{Patient.pulse_oxymetry}}</td>
+		 	 	 	 </tr>
+		 	 	 	
+		 	 	 </table>
+		 	 </div>
+		 </div>
+	</div>
+</section>
+{% endblock content %}
