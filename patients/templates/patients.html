@@ -2,13 +2,9 @@
 {% load static %}
 
 {% block content %}
+
 <style type="text/css">
-    .dash{
-        background-color:black;
-        padding:5px;
-        color:white;
-        border-radius:5px;
-    }
+    
     #btn{
         background-color:green;
         padding:10px;
@@ -22,54 +18,104 @@
         color:white;
     }
 </style>
-<section>
-    <div class="row">
-         <div class="col-sm-12 col-lg-4 col-md-4">
-             <div class="dash text-center shadow-lg p-3 mb-5">
-                 <h4><strong>Number of Patients</strong></h4>
-                 <h1><strong>{{Patient_c}}</strong></h1>
-             </div> 
-         </div>
-         <div class="col-sm-12 col-lg-4 col-md-4">
-             <div style="background-color:green;" class="dash text-center p-3 mb-5">
-                 <h4><strong>Number of Doctors</strong></h4>
-                 <h1><strong>{{doctor_c}}</strong></h1>
-             </div> 
-         </div>
-         <div class="col-sm-12 col-lg-4 col-md-4">
-             <div class="dash text-center p-3 mb-5">
-                 <h4><strong>Number of Ward</strong></h4>
-                 <i class="fa-solid fa-eye"></i>
-                 <h1><strong>{{ward_c}}</strong></h1>
-             </div> 
-         </div>
-    </div>
-</section><hr>
-<div class="patient-hierachy">
-                <h2>Patient Hierachy</h2> 
 
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                     <th>Patient name</th>
-                     <th>Patient ID</th>
-                     <th>Ward</th>
-                     <th>status</th>
-                     <th></th>
-                    </tr>
-                </thead>
-                <tbody class="p-2">
-                    {% for Patient in Patient %}
-                    <tr>
-                        <td>{{Patient.first_name}} {{Patient.last_name}}</td>
-                        <td>{{Patient.id_number}}</td>
-                        <td>{{Patient.ward.name}}</td>
-                        <td>{{Patient.status}}</td>
-                        <td ><a id="btn" href="{%url 'patient_deteil' Patient.id %}">Detail</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-             </table>
-             <a href="#">Show All</a>
+<section>
+    <h1>Virtual Ward</h1>
+            <div class="date">
+                <form class="form" method="GET" action="">
+                     <input type="date">
+                </form>
+            </div><hr>
+            <h4>{{Patient.first_name}} {{Patient.last_name}}</h4><hr> 
+            <div class="insights">
+                <div class="sales">
+
+                    <span class="material-symbols-sharp"></span>
+                    
+
+                      <div class="middle">
+                          <div class="left">
+                              <h3>Heart Rate</h3>
+                              <h1>BPM</h1>
+                          </div>
+                          <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <h1><strong>{{Patient.heart_rate}}</strong></h1>
+                            </div>
+                          </div>
+                      </div>
+                      <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-------------------------- END OF TOP BARS---------------------------------->
+                <div class="expenses">
+                    <span class="material-symbols-sharp">bar_chart</span>
+                      <div class="middle">
+                          <div class="left">
+                              <h3>Oxygen Saturation </h3>
+                              <h1>SpO2</h1>
+                          </div>
+                          <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <h1><strong>{{Patient.pulse_oxymetry}}</strong></h1>
+                            </div>
+
+                            
+                            
+                          </div>
+                      </div>
+                      <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-------------------------- END OF EXPENSES ---------------------------------->
+                <div class="income">
+                    <span class="material-symbols-sharp">device_thermostat</span>
+                      <div class="middle">
+                          <div class="left">
+                              <h3>Temperature</h3>
+                             <!----- <span>&#8451;</span>-->
+                              <h1>celcius</h1>
+                          </div>
+                          <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <h1><strong>{{Patient.temperature}}</strong></h1>
+                            </div>
+                          </div>
+                      </div>
+                      <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-------------------------- END OF income ---------------------------------->
             </div>
+</section>
+<br>
+<!-------------------------- detail ---------------------------------->
+<div>
+                 <table class="table">
+                     <tr>
+                        <th>ID</th>
+                        <td>{{Patient.id_number}}</td>
+                     </tr>
+                     <tr>
+                        <th>Date of birth</th>
+                        <td>{{Patient.date_of_birth}}</td>
+                     </tr>
+                     <tr>
+                        <th>Ward</th>
+                        <td>{{Patient.ward.name}}</td>
+                     </tr>
+                     <tr>
+                        <th>Doctor</th>
+                        <td>{{Patient.doctor.name}}</td>
+                     </tr>
+                    
+                 </table>
+             </div>
+
 {% endblock content %}

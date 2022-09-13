@@ -12,7 +12,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.patient_view,name=''),
     path('doctor/',views.doctor,name="doctor"),
-    path('patient/<int:id>/',views.patient_deteil_view,name='patient_deteil'),
+    path('patient_list/',views.patient_list,name="patient_list"),
+    path('patient/<int:id>/',views.patient_view,name='patient_deteil'),
   
     
     

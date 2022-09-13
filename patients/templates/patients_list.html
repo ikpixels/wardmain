@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+    .dash{
+        background-color:black;
+        padding:5px;
+        color:white;
+        border-radius:5px;
+    }
+    #btn{
+        background-color:green;
+        padding:10px;
+        font-weight:bold;
+        color:white;
+        border-radius:5px;
+        text-decoration:none;
+    }
+    #btn:hover{
+        background-color:black;
+        color:white;
+    }
+</style>
+<hr>
+<div class="patient-hierachy">
+                <h2>Patient Hierachy</h2> 
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                     <th>Patient name</th>
+                     <th>Patient ID</th>
+                     <th>Ward</th>
+                     <th>status</th>
+                     <th></th>
+                    </tr>
+                </thead>
+                <tbody class="p-2">
+                    {% for Patient in Patient %}
+                    <tr>
+                        <td>{{Patient.first_name}} {{Patient.last_name}}</td>
+                        <td>{{Patient.id_number}}</td>
+                        <td>{{Patient.ward.name}}</td>
+                        <td>{{Patient.status}}</td>
+                        <td ><a id="btn" href="{%url 'patient_deteil' Patient.id %}">Detail</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
+             <a href="#">Show All</a>
+            </div>
+{% endblock content %}

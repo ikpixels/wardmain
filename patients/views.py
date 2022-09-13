@@ -3,23 +3,26 @@ from django.contrib.auth.models import User,auth
 from django.views.generic import ListView, DetailView,CreateView
 from .models import Patient,Doctor,Ward
 from django.contrib import messages
+from django.db.models import Q
 
-def patient_view(request):#main dashboard
+
+
+def patient_view(request,id=None):#main dashboard
 
     context = {}
 
-    context['Patient'] = Patient.objects.all()#patient list
+    if id:
+        context['Patient'] = Patient.objects.get(id=id)
+    else:
+        context['Patient'] = Patient.objects.all().last()
 
-    context['Patient_c'] = Patient.objects.all().count()#getting total number of patients
-    context['doctor_c']= Doctor.objects.all().count()#getting total number of doctor
-    context['ward_c']= Ward.objects.all().count()#getting total number of ward
-    
     return render(request,'patients.html',context)
 
-def patient_deteil_view(request,id):
+
+def patient_list(request):
     context = {}
-    context['Patient'] = Patient.objects.get(id=id)
-    return render(request,'patient_deteil.html',context)
+    context['Patient'] = Patient.objects.all()
+    return render(request,'patients_list.html',context)
 
 def doctor(request):
     context = {}
